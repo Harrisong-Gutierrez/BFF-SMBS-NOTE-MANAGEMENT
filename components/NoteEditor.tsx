@@ -27,8 +27,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ notes, setNotes }) => {
         value={newNote}
         onChange={(e) => setNewNote(e.target.value)}
         placeholder="Enter your note..."
-        className="w-full border rounded p-2 mb-4"
-      />
+        className="w-full border rounded p-2 mb-4"/>
       <button onClick={handleAddNote} className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
         Add Note
       </button>
