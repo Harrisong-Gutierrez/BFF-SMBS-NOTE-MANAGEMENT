@@ -1,22 +1,32 @@
 
 import { createClient } from "@/utils/supabase/client";
 import { NextResponse, NextRequest } from "next/server";
+import axios from 'axios';
+
 
 const supabase = createClient();
 
 export const GET = async () => {
-    let { data: Notes, error } = await supabase.from("notes").select("*");
-    if (error) {
-        console.error("Error fetching notes:", error);
+    try {
+        let { data: Notes, error } = await supabase.from("notes").select("*");
+        if (error) {
+            console.error("Error fetching notes:", error);
+            return NextResponse.json(
+                { message: "Failed to fetch notes", error: error.message },
+                { status: 500 }
+            );
+        }
+        return NextResponse.json(
+            { message: "Notes fetched successfully", notes: Notes },
+            { status: 200 }
+        );
+    } catch (error: any) {
+        console.error("Error fetching notes:", error.message);
         return NextResponse.json(
             { message: "Failed to fetch notes", error: error.message },
             { status: 500 }
         );
     }
-    return NextResponse.json(
-        { message: "Notes fetched successfully", notes: Notes },
-        { status: 200 }
-    );
 };
 
 
@@ -44,6 +54,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
     }
 };
 
+
 export const PUT = async (request: NextRequest): Promise<NextResponse> => {
     try {
         const { id, user_id, note_text } = await request.json();
@@ -68,6 +79,7 @@ export const PUT = async (request: NextRequest): Promise<NextResponse> => {
     }
 };
 
+
 export const DELETE = async (request: NextRequest): Promise<NextResponse> => {
     try {
         const { id } = await request.json();
@@ -91,7 +103,6 @@ export const DELETE = async (request: NextRequest): Promise<NextResponse> => {
         );
     }
 };
-
 
 
 
