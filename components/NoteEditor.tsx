@@ -45,10 +45,38 @@ const NoteEditor: React.FC = () => {
     fetchNotes();
   }, []);
 
+  // const handleAddNote = async () => {
+  //   try {
+  //     if (editIndex !== null) {
+  //       await updateNote(notes[editIndex]);
+  //       setEditIndex(null);
+  //     } else {
+  //       await addNote(newNote);
+  //     }
+  //     setNewNote({ ...newNote, note_text: "" });
+  //     fetchNotes();
+  //   } catch (error) {
+  //     console.error("Error adding/editing note:", error);
+  //   }
+  // };
+
+  const handleDeleteNote = async (id: number, index: number) => {
+    try {
+      await deleteNote(id);
+      setNotes((prevNotes) => prevNotes.filter((_, i) => i !== index));
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
+
   const handleAddNote = async () => {
     try {
       if (editIndex !== null) {
-        await updateNote(notes[editIndex]);
+        const editedNote = { id: notes[editIndex].id, ...newNote };
+        if (!editedNote.user_id) {
+          throw new Error("User ID is missing"); // Si user_id es undefined, lanza un error
+        }
+        await updateNote(editedNote);
         setEditIndex(null);
       } else {
         await addNote(newNote);
@@ -57,15 +85,6 @@ const NoteEditor: React.FC = () => {
       fetchNotes();
     } catch (error) {
       console.error("Error adding/editing note:", error);
-    }
-  };
-
-  const handleDeleteNote = async (id: number, index: number) => {
-    try {
-      await deleteNote(id);
-      setNotes((prevNotes) => prevNotes.filter((_, i) => i !== index));
-    } catch (error) {
-      console.error("Error deleting note:", error);
     }
   };
 
