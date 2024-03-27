@@ -6,9 +6,11 @@ import axios from 'axios';
 
 const supabase = createClient();
 
-export const GET = async () => {
+export const GET = async (request: NextRequest) => {
+    const userId = await request.headers.get('user_id');
+
     try {
-        let { data: Notes, error } = await supabase.from("notes").select("*");
+        let { data: Notes, error } = await supabase.from("notes").select("*").eq('user_id', userId);
         if (error) {
             console.error("Error fetching notes:", error);
             return NextResponse.json(
