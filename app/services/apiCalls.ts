@@ -37,7 +37,7 @@ export const updateNote = async (noteData: { id: number; user_id: string; note_t
 
 export const deleteNote = async (id: number) => {
     try {
-        const response = await axios.delete(`${baseURL}/api/notes`, { data: { id } }); // Corregido: eliminado espacio adicional
+        const response = await axios.delete(`${baseURL}/api/notes`, { data: { id } }); 
         return response.data;
     } catch (error) {
         console.error('Error deleting note:', error);
