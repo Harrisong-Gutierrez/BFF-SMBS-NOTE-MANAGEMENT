@@ -55,29 +55,7 @@ export const POST = async (request: NextRequest): Promise<NextResponse> => {
 };
 
 
-// export const PUT = async (request: NextRequest): Promise<NextResponse> => {
-//     try {
-//         const { id, user_id, note_text } = await request.json();
-//         const { data: note, error } = await supabase.from("notes").update({ user_id, note_text }).eq('id', id);
-//         if (error) {
-//             console.error("Error updating note:", error.message);
-//             return NextResponse.json(
-//                 { message: "Failed to update note", error: error.message },
-//                 { status: 500 }
-//             );
-//         }
-//         return NextResponse.json(
-//             { message: "Note updated successfully", note },
-//             { status: 200 }
-//         );
-//     } catch (error: any) {
-//         console.error("Error updating note:", error.message);
-//         return NextResponse.json(
-//             { message: "Failed to update note", error: error.message },
-//             { status: 500 }
-//         );
-//     }
-// };
+
 export const PUT = async (request: NextRequest): Promise<NextResponse> => {
     try {
         const { id, user_id, note_text } = await request.json();
