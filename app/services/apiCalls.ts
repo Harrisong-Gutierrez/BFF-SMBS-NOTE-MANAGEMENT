@@ -6,7 +6,7 @@ const baseURL: string = 'http://localhost:3000';
 export const getNotes = async () => {
     try {
         const response = await axios.get(`${baseURL}/api/notes`);
-        console.log(response)
+
         return response.data;
 
     } catch (error) {
@@ -25,15 +25,7 @@ export const addNote = async (noteData: { user_id?: string; note_text?: string }
     }
 };
 
-// export const updateNote = async (noteData: { id: number; user_id: string; note_text: string }) => {
-//     try {
-//         const response = await axios.put(`${baseURL}/api/notes`, noteData);
-//         return response.data;
-//     } catch (error) {
-//         console.error('Error updating note:', error);
-//         throw error;
-//     }
-// };
+
 export const updateNote = async (noteData: { id: number; user_id: string; note_text: string }) => {
     try {
         const response = await axios.put(`${baseURL}/api/notes`, noteData);

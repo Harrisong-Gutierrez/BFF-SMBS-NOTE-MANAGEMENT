@@ -54,24 +54,6 @@ const NoteEditor: React.FC = () => {
     }
   };
 
-  // const handleAddNote = async () => {
-  //   try {
-  //     if (editIndex !== null) {
-  //       const editedNote = { id: notes[editIndex].id, ...newNote };
-  //       if (!editedNote.user_id) {
-  //         throw new Error("User ID is missing");
-  //       }
-  //       await updateNote(editedNote);
-  //       setEditIndex(null);
-  //     } else {
-  //       await addNote(newNote);
-  //     }
-  //     setNewNote({ ...newNote, note_text: "" });
-  //     fetchNotes();
-  //   } catch (error) {
-  //     console.error("Error adding/editing note:", error);
-  //   }
-  // };
   const handleAddNote = async () => {
     try {
       if (editIndex !== null) {

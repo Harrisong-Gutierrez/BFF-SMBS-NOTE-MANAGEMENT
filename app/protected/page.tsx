@@ -20,7 +20,6 @@ export default async function ProtectedPage() {
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div className="w-full">
-   
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
           <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
             <DeployButton />
@@ -34,9 +33,9 @@ export default async function ProtectedPage() {
         <main className="flex-1 flex flex-col gap-6">
           <h2 className="font-bold text-4xl mb-4">Create your notes</h2>
           <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Note Editor</h1>
-      <NoteEditorContainer />
-    </div>
+            <h1 className="text-2xl font-bold mb-4">Note Editor</h1>
+            <NoteEditorContainer />
+          </div>
         </main>
       </div>
 
