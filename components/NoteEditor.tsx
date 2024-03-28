@@ -96,6 +96,34 @@ const NoteEditor: React.FC = () => {
     });
   };
 
+  const renderNotes = () => {
+    return notes &&
+      notes.map((note, index) => (
+        <li
+          key={note.id}
+          className="flex justify-between items-center border p-2 mb-2 rounded"
+        >
+          <span>{note.note_text}</span>
+          <div>
+            <button
+              onClick={() => handleEditNote(index)}
+              className="text-blue-500 mr-2"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => handleDeleteNote(note.id, index)}
+              className="text-red-500"
+            >
+              Delete
+            </button>
+          </div>
+        </li>
+      ))
+  }
+
+
+
   return (
     <div className="max-w-sm mx-auto">
       <input
@@ -113,29 +141,7 @@ const NoteEditor: React.FC = () => {
         {editIndex !== null ? "Edit Note" : "Add Note"}
       </button>
       <ul className="m-4">
-        {notes &&
-          notes.map((note, index) => (
-            <li
-              key={note.id}
-              className="flex justify-between items-center border p-2 mb-2 rounded"
-            >
-              <span>{note.note_text}</span>
-              <div>
-                <button
-                  onClick={() => handleEditNote(index)}
-                  className="text-blue-500 mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDeleteNote(note.id, index)}
-                  className="text-red-500"
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
+        {renderNotes()}
       </ul>
     </div>
   );
